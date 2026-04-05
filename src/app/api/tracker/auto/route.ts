@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { turso, ensureDB } from "@/lib/turso";
+import { NextResponse } from 'next/server'
+import { turso, ensureDB } from '@/lib/turso'
 
 /**
  * GET  /api/tracker/auto          → list all auto-tracked symbols
@@ -11,7 +11,7 @@ import { turso, ensureDB } from "@/lib/turso";
  */
 
 export async function GET() {
-  await ensureDB();
+  await ensureDB()
   try {
     const result = await turso.execute({
       sql: `SELECT ts.*, 
@@ -22,44 +22,42 @@ export async function GET() {
             GROUP BY ts.symbol
             ORDER BY ts.added_at DESC`,
       args: [],
-    });
-    return NextResponse.json({ symbols: result.rows });
+    })
+    return NextResponse.json({ symbols: result.rows })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }
 
 export async function POST(request: Request) {
-  await ensureDB();
+  await ensureDB()
   try {
-    const body = await request.json();
-    const { symbol, name } = body;
-    if (!symbol)
-      return NextResponse.json({ error: "symbol required" }, { status: 400 });
+    const body = await request.json()
+    const { symbol, name } = body
+    if (!symbol) return NextResponse.json({ error: 'symbol required' }, { status: 400 })
 
     await turso.execute({
       sql: `INSERT OR IGNORE INTO tracked_symbols (symbol, name, added_at) VALUES (?, ?, ?)`,
-      args: [symbol.toUpperCase(), name || "", new Date().toISOString()],
-    });
-    return NextResponse.json({ success: true });
+      args: [symbol.toUpperCase(), name || '', new Date().toISOString()],
+    })
+    return NextResponse.json({ success: true })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }
 
 export async function DELETE(request: Request) {
-  await ensureDB();
-  const { searchParams } = new URL(request.url);
-  const symbol = searchParams.get("symbol")?.toUpperCase();
-  if (!symbol)
-    return NextResponse.json({ error: "symbol required" }, { status: 400 });
+  await ensureDB()
+  const { searchParams } = new URL(request.url)
+  const symbol = searchParams.get('symbol')?.toUpperCase()
+  if (!symbol) return NextResponse.json({ error: 'symbol required' }, { status: 400 })
   try {
     await turso.execute({
       sql: `DELETE FROM tracked_symbols WHERE symbol = ?`,
       args: [symbol],
-    });
-    return NextResponse.json({ success: true });
+    })
+    return NextResponse.json({ success: true })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }

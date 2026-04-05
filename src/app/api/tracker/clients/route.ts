@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
-import { turso, ensureDB } from "@/lib/turso";
+import { NextResponse } from 'next/server'
+import { turso, ensureDB } from '@/lib/turso'
 
 /**
  * GET /api/tracker/clients              → all clients ranked by activity
  * GET /api/tracker/clients?client=NAME  → all deals for a specific client
  */
 export async function GET(request: Request) {
-  await ensureDB();
-  const { searchParams } = new URL(request.url);
-  const client = searchParams.get("client");
+  await ensureDB()
+  const { searchParams } = new URL(request.url)
+  const client = searchParams.get('client')
 
   try {
     if (client) {
@@ -16,11 +16,11 @@ export async function GET(request: Request) {
       const result = await turso.execute({
         sql: `SELECT * FROM tracked_deals WHERE client_name = ? ORDER BY deal_date ASC, saved_at ASC`,
         args: [client],
-      });
+      })
       return NextResponse.json({
         deals: result.rows,
         count: result.rows.length,
-      });
+      })
     }
 
     // Client profile summary — ranked by total value + deal count
@@ -42,9 +42,9 @@ export async function GET(request: Request) {
             ORDER BY total_deals DESC, (total_buy_cr + total_sell_cr) DESC
             LIMIT 100`,
       args: [],
-    });
-    return NextResponse.json({ clients: result.rows });
+    })
+    return NextResponse.json({ clients: result.rows })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }

@@ -5,42 +5,39 @@
  */
 
 export interface TokenStore {
-  accessToken: string;
-  clientId: string;
-  expiresAt: number; // Unix ms — midnight IST
+  accessToken: string
+  clientId: string
+  expiresAt: number // Unix ms — midnight IST
 }
 
 // Global singleton — survives across hot reloads in dev too
-const g = global as any;
-if (!g.__fyersToken) g.__fyersToken = null;
+const g = global as any
+if (!g.__fyersToken) g.__fyersToken = null
 
 export function getToken(): TokenStore | null {
-  return g.__fyersToken;
+  return g.__fyersToken
 }
 
 export function setToken(t: TokenStore) {
-  g.__fyersToken = t;
-  console.log(
-    "[Fyers] Access token stored, expires:",
-    new Date(t.expiresAt).toISOString(),
-  );
+  g.__fyersToken = t
+  console.log('[Fyers] Access token stored, expires:', new Date(t.expiresAt).toISOString())
 }
 
 export function clearToken() {
-  g.__fyersToken = null;
+  g.__fyersToken = null
 }
 
 export function isTokenValid(): boolean {
-  const t = g.__fyersToken;
-  if (!t) return false;
-  return Date.now() < t.expiresAt;
+  const t = g.__fyersToken
+  if (!t) return false
+  return Date.now() < t.expiresAt
 }
 
 // Midnight IST = midnight UTC+5:30 = 18:30 UTC
 export function midnightIST(): number {
-  const now = new Date();
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  const nowIST = new Date(now.getTime() + istOffset);
+  const now = new Date()
+  const istOffset = 5.5 * 60 * 60 * 1000
+  const nowIST = new Date(now.getTime() + istOffset)
   const midnight = new Date(
     Date.UTC(
       nowIST.getUTCFullYear(),
@@ -49,8 +46,8 @@ export function midnightIST(): number {
       0,
       0,
       0,
-      0,
-    ) - istOffset,
-  );
-  return midnight.getTime();
+      0
+    ) - istOffset
+  )
+  return midnight.getTime()
 }

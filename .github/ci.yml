@@ -1,0 +1,90 @@
+name: CI — Lint, Type Check & Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: ['**'] # ← triggers on ALL PRs regardless of source branch
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ── Job 1: Lint & Format Check ──────────────────────────────────────────
+  lint:
+    name: Lint & Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check Prettier formatting
+        run: npm run format:check
+
+  # ── Job 2: TypeScript type check ────────────────────────────────────────
+  type-check:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+  # ── Job 3: Build ─────────────────────────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, type-check]
+    env:
+      TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL || 'libsql://placeholder.turso.io' }}
+      TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN || 'placeholder-token' }}
+      FYERS_APP_ID: ${{ secrets.FYERS_APP_ID || 'PLACEHOLDER-100' }}
+      FYERS_SECRET_KEY: ${{ secrets.FYERS_SECRET_KEY || 'placeholder-secret' }}
+      FYERS_REDIRECT_URL: ${{ secrets.FYERS_REDIRECT_URL || 'http://localhost:3000/api/auth/callback' }}
+      FYERS_APP_TYPE: '100'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          path: .next/
+          retention-days: 7

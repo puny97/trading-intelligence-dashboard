@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { turso, ensureDB } from "@/lib/turso";
+import { NextResponse } from 'next/server'
+import { turso, ensureDB } from '@/lib/turso'
 
 /**
  * GET /api/magic/history
@@ -11,35 +11,35 @@ import { turso, ensureDB } from "@/lib/turso";
  * Returns rows + backtest stats
  */
 export async function GET(request: Request) {
-  await ensureDB();
-  const { searchParams } = new URL(request.url);
-  const limit = Math.min(parseInt(searchParams.get("limit") || "500"), 2000);
-  const from = searchParams.get("from") || "";
-  const to = searchParams.get("to") || "";
-  const mtype = searchParams.get("type") || "";
+  await ensureDB()
+  const { searchParams } = new URL(request.url)
+  const limit = Math.min(parseInt(searchParams.get('limit') || '500'), 2000)
+  const from = searchParams.get('from') || ''
+  const to = searchParams.get('to') || ''
+  const mtype = searchParams.get('type') || ''
 
   try {
     // Build query
-    const where: string[] = [];
-    const args: any[] = [];
+    const where: string[] = []
+    const args: any[] = []
     if (from) {
-      where.push("date >= ?");
-      args.push(from);
+      where.push('date >= ?')
+      args.push(from)
     }
     if (to) {
-      where.push("date <= ?");
-      args.push(to);
+      where.push('date <= ?')
+      args.push(to)
     }
     if (mtype) {
-      where.push("market_type = ?");
-      args.push(mtype);
+      where.push('market_type = ?')
+      args.push(mtype)
     }
 
-    const whereClause = where.length ? "WHERE " + where.join(" AND ") : "";
+    const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : ''
     const rowsResult = await turso.execute({
       sql: `SELECT * FROM nifty_history ${whereClause} ORDER BY date DESC LIMIT ?`,
       args: [...args, limit],
-    });
+    })
 
     // Backtest stats — always over entire DB
     const statsResult = await turso.execute({
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
             WHERE market_type IS NOT NULL
             GROUP BY market_type`,
       args: [],
-    });
+    })
 
     // Overall stats
     const overallResult = await turso.execute({
@@ -69,15 +69,15 @@ export async function GET(request: Request) {
             FROM nifty_history
             WHERE market_type IS NOT NULL`,
       args: [],
-    });
+    })
 
     return NextResponse.json({
       rows: rowsResult.rows,
       count: rowsResult.rows.length,
       stats: statsResult.rows,
       overall: overallResult.rows[0],
-    });
+    })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }

@@ -9,7 +9,9 @@ export default function RapidMovers({ data }: { data: Record<string, StockData> 
   return (
     <div className="section-panel">
       <div className="panel-header">
-        <div className="panel-title"><span>⚡</span> RAPID MOVERS</div>
+        <div className="panel-title">
+          <span>⚡</span> RAPID MOVERS
+        </div>
         <div className="live-badge">● LIVE</div>
       </div>
       <div className="table-header rapid-row">
@@ -38,7 +40,8 @@ export default function RapidMovers({ data }: { data: Record<string, StockData> 
               ₹{parseFloat(s.price).toLocaleString('en-IN')}
             </div>
             <div className="col-change" style={{ color, background: bg }}>
-              {isUp ? '+' : ''}{s.chgPct}%
+              {isUp ? '+' : ''}
+              {s.chgPct}%
             </div>
             <div className="speed-indicator">
               {Array.from({ length: 5 }, (_, j) => (
