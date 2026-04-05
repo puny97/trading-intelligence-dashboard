@@ -3,6 +3,7 @@ name: PR Check — Validate & Label
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+    branches: ['**'] # ← triggers on ALL PRs
 
 jobs:
   # ── Validate PR title follows conventional commits ───────────────────────
