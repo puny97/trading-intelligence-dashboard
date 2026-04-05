@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
 
 :root {
   --bg: #030a0e;
@@ -23,13 +23,13 @@ html,
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   background: repeating-linear-gradient(
@@ -185,7 +185,7 @@ body::before {
 .countdown-num {
   position: relative;
   font-size: 9px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   color: var(--accent);
   font-weight: 700;
   line-height: 1;
@@ -224,7 +224,7 @@ body::before {
   gap: 16px;
 }
 .logo-area h1 {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: clamp(20px, 4vw, 34px);
   color: var(--accent);
@@ -276,7 +276,7 @@ body::before {
   border: 1px solid var(--accent);
   color: var(--accent);
   padding: 8px 18px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 11px;
   cursor: pointer;
   letter-spacing: 2px;
@@ -294,15 +294,10 @@ body::before {
   cursor: not-allowed;
 }
 .refresh-btn.spinning::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 255, 231, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 231, 0.3), transparent);
   animation: shimmer 0.8s linear infinite;
 }
 
@@ -326,7 +321,7 @@ body::before {
   border-top: none;
   border-left: none;
   border-right: none;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .ex-tab.active {
   color: var(--accent);
@@ -358,7 +353,7 @@ body::before {
   overflow: hidden;
 }
 .index-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -379,7 +374,7 @@ body::before {
   margin-bottom: 6px;
 }
 .index-value {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 19px;
   font-weight: 700;
   color: var(--text);
@@ -419,7 +414,7 @@ body::before {
   text-transform: uppercase;
 }
 .stat-value {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--accent);
@@ -519,7 +514,7 @@ body::before {
   background: var(--panel);
 }
 .panel-title {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -727,7 +722,7 @@ body::before {
   border: 1px solid var(--red);
   color: var(--red);
   padding: 6px 14px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 10px;
   letter-spacing: 2px;
   cursor: pointer;
@@ -757,7 +752,7 @@ body::before {
   width: 100%;
 }
 .auth-card h2 {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   color: var(--accent);
   font-size: 24px;
   margin-bottom: 12px;
@@ -773,7 +768,7 @@ body::before {
   background: var(--accent);
   color: #000;
   padding: 12px 28px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -824,7 +819,7 @@ body::before {
   font-size: 28px;
 }
 .fyers-heading {
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 22px;
   color: var(--accent);
@@ -885,7 +880,7 @@ body::before {
 .fstat-val {
   font-size: 20px;
   font-weight: 700;
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-top: 2px;
 }
 
@@ -905,7 +900,7 @@ body::before {
   border: none;
   border-bottom: 2px solid transparent;
   background: none;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   transition: all 0.2s;
   display: flex;
   align-items: center;
@@ -996,7 +991,7 @@ body::before {
 .res-btn {
   padding: 4px 10px;
   font-size: 10px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--muted);
@@ -1073,7 +1068,7 @@ body::before {
   border: 1px solid var(--border);
   color: var(--text);
   padding: 9px 14px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 11px;
   outline: none;
 }
@@ -1085,7 +1080,7 @@ body::before {
   color: #000;
   border: none;
   padding: 9px 18px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
@@ -1096,7 +1091,7 @@ body::before {
   border: 1px solid var(--border);
   color: var(--muted);
   padding: 9px 14px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -1189,7 +1184,7 @@ body::before {
   border-radius: 3px;
   font-size: 11px;
   font-weight: 700;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .gap-badge.up {
   background: rgba(0, 230, 118, 0.12);
@@ -1250,7 +1245,7 @@ body::before {
   background: none;
   color: var(--muted);
   cursor: pointer;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   text-transform: uppercase;
   transition: all 0.15s;
 }
@@ -1280,7 +1275,7 @@ body::before {
   border-radius: 3px;
   font-size: 11px;
   text-align: center;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .no-gappers {
   padding: 40px;
@@ -1337,7 +1332,7 @@ body::before {
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--text);
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
 }
 .deals-sub {
   font-size: 9px;
@@ -1378,7 +1373,7 @@ body::before {
 .dc-val {
   font-size: 18px;
   font-weight: 700;
-  font-family: "Syne", sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-top: 2px;
 }
 .dc-symbols {
@@ -1392,7 +1387,7 @@ body::before {
   letter-spacing: 1px;
   padding: 2px 7px;
   border-radius: 3px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .dc-sym-chip.buy {
   background: rgba(0, 230, 118, 0.12);
@@ -1420,7 +1415,7 @@ body::before {
   border: none;
   border-bottom: 2px solid transparent;
   background: none;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   transition: all 0.2s;
   display: flex;
   align-items: center;
@@ -1448,7 +1443,7 @@ body::before {
   padding: 4px 10px;
   border-radius: 3px;
   font-size: 11px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   width: 180px;
 }
 .deals-search::placeholder {
@@ -1513,7 +1508,7 @@ body::before {
   border-radius: 3px;
   font-size: 10px;
   font-weight: 700;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .deal-type-badge.buy {
   background: rgba(0, 230, 118, 0.12);
@@ -1531,7 +1526,7 @@ body::before {
   white-space: nowrap;
 }
 .deal-num {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 12px;
 }
 .deal-value {
@@ -1540,7 +1535,7 @@ body::before {
 .deal-time {
   font-size: 10px;
   color: var(--muted);
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 
 /* ── Deal Tracker ─────────────────────────────────────────────────── */
@@ -1597,7 +1592,7 @@ body::before {
   gap: 10px;
   margin-top: 3px;
   font-size: 10px;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .tracker-sym-dates {
   font-size: 9px;
@@ -1607,7 +1602,7 @@ body::before {
 .tracker-net {
   font-size: 11px;
   font-weight: 700;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .tracker-empty {
   padding: 40px 16px;
@@ -1669,7 +1664,7 @@ body::before {
   background: rgba(0, 255, 231, 0.06);
   color: var(--text);
   border: 1px solid var(--border);
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 
 /* Timeline */
@@ -1689,7 +1684,7 @@ body::before {
   letter-spacing: 2px;
   color: var(--accent);
   text-transform: uppercase;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   background: rgba(0, 255, 231, 0.07);
   padding: 2px 8px;
   border-radius: 2px;
@@ -1818,7 +1813,7 @@ body::before {
   font-size: 12px;
   font-weight: 600;
   color: var(--text);
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 .ca-flow {
   display: flex;
@@ -1929,7 +1924,7 @@ body::before {
   background: rgba(0, 255, 231, 0.02);
 }
 .raw-timeline-toggle summary::before {
-  content: "▶";
+  content: '▶';
   font-size: 8px;
   transition: transform 0.2s;
 }

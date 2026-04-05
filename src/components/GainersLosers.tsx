@@ -7,9 +7,7 @@ interface Props {
 }
 
 export default function GainersLosers({ data, mode }: Props) {
-  const sorted = Object.values(data).sort(
-    (a, b) => parseFloat(b.chgPct) - parseFloat(a.chgPct)
-  )
+  const sorted = Object.values(data).sort((a, b) => parseFloat(b.chgPct) - parseFloat(a.chgPct))
   const list = mode === 'gainers' ? sorted.slice(0, 10) : sorted.slice(-10).reverse()
   const isGainers = mode === 'gainers'
 
@@ -46,7 +44,8 @@ export default function GainersLosers({ data, mode }: Props) {
               ₹{parseFloat(s.price).toLocaleString('en-IN')}
             </div>
             <div className="col-change" style={{ color, background: bg }}>
-              {isUp ? '+' : ''}{s.chgPct}%
+              {isUp ? '+' : ''}
+              {s.chgPct}%
             </div>
             <div className="col-vol" style={{ textAlign: 'right' }}>
               {fmtVol(s.volume)}

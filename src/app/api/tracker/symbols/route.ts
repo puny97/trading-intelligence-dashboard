@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
-import { turso, ensureDB } from "@/lib/turso";
+import { NextResponse } from 'next/server'
+import { turso, ensureDB } from '@/lib/turso'
 
 /**
  * GET /api/tracker/symbols → list all tracked symbols with summary stats
  */
 export async function GET() {
-  await ensureDB();
+  await ensureDB()
   try {
     const result = await turso.execute({
       sql: `SELECT
@@ -22,9 +22,9 @@ export async function GET() {
             GROUP BY symbol
             ORDER BY total_deals DESC`,
       args: [],
-    });
-    return NextResponse.json({ symbols: result.rows });
+    })
+    return NextResponse.json({ symbols: result.rows })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }

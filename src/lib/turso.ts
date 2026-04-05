@@ -1,18 +1,18 @@
-import { createClient } from "@libsql/client";
+import { createClient } from '@libsql/client'
 
 declare global {
-  var __turso: ReturnType<typeof createClient> | undefined;
+  var __turso: ReturnType<typeof createClient> | undefined
 }
 
 function getClient() {
-  const url = process.env.TURSO_DATABASE_URL;
-  const token = process.env.TURSO_AUTH_TOKEN;
-  if (!url) throw new Error("TURSO_DATABASE_URL not set in .env.local");
-  if (!token) throw new Error("TURSO_AUTH_TOKEN not set in .env.local");
-  return createClient({ url, authToken: token });
+  const url = process.env.TURSO_DATABASE_URL
+  const token = process.env.TURSO_AUTH_TOKEN
+  if (!url) throw new Error('TURSO_DATABASE_URL not set in .env.local')
+  if (!token) throw new Error('TURSO_AUTH_TOKEN not set in .env.local')
+  return createClient({ url, authToken: token })
 }
 
-export const turso = global.__turso ?? (global.__turso = getClient());
+export const turso = global.__turso ?? (global.__turso = getClient())
 
 export async function initDB() {
   await turso.batch(
@@ -89,13 +89,13 @@ export async function initDB() {
         args: [],
       },
     ],
-    "write",
-  );
+    'write'
+  )
 }
 
-let _initialized = false;
+let _initialized = false
 export async function ensureDB() {
-  if (_initialized) return;
-  await initDB();
-  _initialized = true;
+  if (_initialized) return
+  await initDB()
+  _initialized = true
 }

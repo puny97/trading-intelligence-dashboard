@@ -5,7 +5,9 @@ export default function AlertFeed({ alerts }: { alerts: Alert[] }) {
   return (
     <div className="alert-feed">
       <div className="panel-header">
-        <div className="panel-title"><span>🔔</span> LIVE ALERTS</div>
+        <div className="panel-title">
+          <span>🔔</span> LIVE ALERTS
+        </div>
         <div className="live-badge">● LIVE</div>
       </div>
       <div className="alert-scroll">

@@ -8,9 +8,7 @@ export default function IndexStrip({ indices }: { indices: IndexData[] }) {
         <div key={idx.id} className={`index-card ${idx.isUp ? 'up' : 'down'}`}>
           <div className="index-name">{idx.label}</div>
           <div className="index-value">{idx.value}</div>
-          <div className={`index-change ${idx.isUp ? 'up-text' : 'down-text'}`}>
-            {idx.chg}
-          </div>
+          <div className={`index-change ${idx.isUp ? 'up-text' : 'down-text'}`}>{idx.chg}</div>
         </div>
       ))}
     </div>
